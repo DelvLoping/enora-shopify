@@ -1,0 +1,99 @@
+<section id="produit" class="py-28 lg:py-40" data-section-type="product-showcase" data-section-id="{{ section.id }}">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <p class="reveal text-[11px] tracking-[0.4em] uppercase text-taupe mb-6">
+        {{ section.settings.eyebrow | escape }}
+      </p>
+      <h2 class="reveal reveal-delay-1 text-4xl lg:text-7xl text-balance">
+        {{ section.settings.headline }}
+      </h2>
+    </div>
+
+    <div class="reveal reveal-delay-2 relative rounded-[2rem] overflow-hidden bg-charcoal aspect-[16/10] lg:aspect-[21/9]">
+      {% if section.settings.showcase_image %}
+        {{ section.settings.showcase_image | image_url: width: 1800 | image_tag:
+          loading: 'lazy',
+          class: 'w-full h-full object-cover opacity-95',
+          alt: 'Detail de l appareil ENORA'
+        }}
+      {% else %}
+        <img src="{{ 'product-detail.jpg' | asset_url }}" alt="Detail de l appareil ENORA" class="w-full h-full object-cover opacity-95" loading="lazy" width="1800" height="900" />
+      {% endif %}
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 p-10 lg:p-16 max-w-xl">
+        <p class="text-[11px] tracking-[0.4em] uppercase text-ember-soft mb-4">
+          {{ section.settings.overlay_eyebrow | escape }}
+        </p>
+        <h3 class="text-3xl lg:text-5xl text-offwhite font-display font-light">
+          {{ section.settings.overlay_headline }}
+        </h3>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-px mt-px bg-border rounded-3xl overflow-hidden">
+      {% assign specs = section.settings.specs | split: '||' %}
+      {% for spec in specs %}
+        {% assign parts = spec | strip | split: '|' %}
+        <div class="reveal reveal-delay-{{ forloop.index | plus: 1 }} bg-card p-10 text-center">
+          <div class="font-display text-4xl lg:text-5xl text-foreground mb-2">
+            {% if parts[0] %}{{ parts[0] | strip }}{% endif %}
+          </div>
+          <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground">
+            {% if parts[1] %}{{ parts[1] | strip }}{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Showcase",
+  "tag": "section",
+  "class": "section-product-showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "L'Objet"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Conçu pour <em class='not-italic text-taupe'>durer.</em>"
+    },
+    {
+      "type": "image_picker",
+      "id": "showcase_image",
+      "label": "Showcase image"
+    },
+    {
+      "type": "text",
+      "id": "overlay_eyebrow",
+      "label": "Overlay eyebrow",
+      "default": "Red Light · 660nm"
+    },
+    {
+      "type": "textarea",
+      "id": "overlay_headline",
+      "label": "Overlay headline",
+      "default": "132 diodes médicales,<br>une lumière sans compromis."
+    },
+    {
+      "type": "textarea",
+      "id": "specs",
+      "label": "Specifications (|| separated, value|label)",
+      "default": "660nm|Longueur d'onde optimale||4 min|Une séance, un rituel||USB-C|Charge rapide, 21 séances"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Showcase",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}

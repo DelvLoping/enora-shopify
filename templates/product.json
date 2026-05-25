@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main-product": { "type": "main-product", "settings": {} },
+    "how-it-works": { "type": "how-it-works", "settings": {} },
+    "variant-showcase": { "type": "variant-showcase", "settings": {} },
+    "reviews": { "type": "reviews", "settings": {} },
+    "faq": { "type": "faq", "settings": {} },
+    "final-cta": { "type": "final-cta", "settings": {} }
+  },
+  "order": [
+    "main-product",
+    "how-it-works",
+    "variant-showcase",
+    "reviews",
+    "faq",
+    "final-cta"
+  ]
+}

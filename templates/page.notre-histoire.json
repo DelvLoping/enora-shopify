@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Notre histoire",
+        "content": "<p>ENORA est née d'une conviction simple : le soin capillaire mérite la même exigence que le soin de la peau.</p><p>Chaque appareil est le fruit de deux années de recherche mêlant photobiomodulation et design d'exception. Notre mission : rendre la lumière rouge accessible à tous, dans un écrin premium pensé pour le quotidien.</p>"
+      }
+    }
+  },
+  "order": ["rich-text"]
+}

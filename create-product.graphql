@@ -1,0 +1,26 @@
+mutation {
+  productCreate(input: {
+    title: "ENORA — Appareil de soin capillaire a lumiere rouge",
+    descriptionHtml: "<p><strong>ENORA reinvente le soin du cuir chevelu.</strong> Un rituel quotidien a lumiere rouge (660nm), concu comme une parenthese de calme — pour des cheveux plus forts, un esprit plus clair.</p><p>&nbsp;</p><p>✓ 132 diodes medicales de grade clinique</p><p>✓ Longueur d'onde optimale 660nm</p><p>✓ 4 minutes par seance, 3 zones</p><p>✓ USB-C, 21 seances par charge</p><p>✓ Garantie 2 ans</p><p>✓ 60 jours d'essai satisfait ou rembourse</p><p>&nbsp;</p><p><em>Concu en France. Pense pour durer.</em></p>",
+    vendor: "ENORA",
+    productType: "Edition 01 - Scalp Wellness",
+    tags: ["red-light-therapy", "scalp-care", "premium", "self-care", "lumiere-rouge"],
+    status: ACTIVE,
+    options: ["Couleur"],
+    variants: [{
+      price: "89.00",
+      compareAtPrice: "129.00",
+      optionValues: [{optionName: "Couleur", name: "Noir & Rouge"}],
+      inventoryPolicy: CONTINUE,
+      taxable: true
+    }]
+  }) {
+    product {
+      id
+      title
+      handle
+      onlineStoreUrl
+    }
+    userErrors { field message }
+  }
+}

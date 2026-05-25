@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Presse",
+        "content": "<p>ENORA dans la presse.</p><p>Contact presse : contact@enora-rituel.fr</p>"
+      }
+    }
+  },
+  "order": ["rich-text"]
+}

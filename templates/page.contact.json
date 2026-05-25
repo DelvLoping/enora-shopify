@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Contact",
+        "content": "<p>Une question sur ENORA ? Notre équipé vous répond dans les meilleurs délais.</p><p><strong>Email :</strong> contact@enora-rituel.fr</p><p><strong>Adresse :</strong><br>FlowCodeLab<br>200 RUE de la Croix Nivert<br>75015 Paris<br>FRANCE</p>"
+      }
+    }
+  },
+  "order": ["rich-text"]
+}

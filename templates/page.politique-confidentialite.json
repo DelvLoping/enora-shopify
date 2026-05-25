@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Politique de confidentialité",
+        "content": "<p><strong>Collecte des données</strong></p><p>Nous collectons les données nécessaires au traitement de votre commande : nom, adresse, email, telephone. Ces données sont strictement utilisées pour l execution de votre commande et ne sont jamais revendues a des tiers.</p><p><strong>Paiement</strong></p><p>Les transactions sont sécurisées par Shopify Payments et les prestataires de paiement (PayPal, Apple Pay, Klarna). Aucune donnée bancaire n'est stockee sur nos serveurs.</p><p><strong>Cookies</strong></p><p>Notre site utilisé des cookies essentiels au fonctionnement du panier et des cookies analytics anonymes pour ameliorer votre experience.</p><p><strong>Vos droits</strong></p><p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contactez-nous a contact@enora-rituel.fr.</p><p><strong>Responsable de traitement</strong></p><p>FlowCodeLab<br>200 RUE de la Croix Nivert<br>75015 Paris<br>FRANCE<br>SIRET : 98260613900037</p>"
+      }
+    }
+  },
+  "order": ["rich-text"]
+}

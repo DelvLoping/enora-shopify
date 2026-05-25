@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Livraison",
+        "content": "<p><strong>Livraison offerte</strong></p><p>La livraison est offerte pour toute commande.</p><p><strong>Délais</strong></p><p>Expédition sous 48h ouvrés. Livraison en 3 a 10 jours selon votre localisation.</p><p><strong>Suivi</strong></p><p>Un numéro de suivi vous est communiqué par email dès l' expédition de votre commande.</p><p><strong>Zones desservies</strong></p><p>France métropolitaine, Belgique, Luxembourg, Suisse, DOM-TOM et Union Européenne.</p><p>Pour toute question : contact@enora-rituel.fr</p>"
+      }
+    }
+  },
+  "order": ["rich-text"]
+}

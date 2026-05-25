@@ -1,0 +1,79 @@
+<section id="acheter" class="relative py-28 lg:py-44 overflow-hidden bg-charcoal text-offwhite" data-section-type="final-cta" data-section-id="{{ section.id }}">
+  <div class="absolute inset-0 bg-ember-glow opacity-60"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] rounded-full bg-ember/20 blur-3xl animate-ember"></div>
+
+  <div class="relative mx-auto max-w-4xl px-6 lg:px-10 text-center">
+    <p class="reveal text-[11px] tracking-[0.4em] uppercase text-ember-soft mb-8">
+      {{ section.settings.eyebrow | escape }}
+    </p>
+
+    <h2 class="reveal reveal-delay-1 font-display text-5xl lg:text-8xl text-balance leading-[0.95]">
+      {{ section.settings.headline }}
+    </h2>
+
+    <p class="reveal reveal-delay-2 mt-8 text-offwhite/70 max-w-lg mx-auto text-balance">
+      {{ section.settings.description | escape }}
+    </p>
+
+    <div class="reveal reveal-delay-3 mt-12 inline-flex flex-col items-center">
+      <form method="post" action="/cart/add" class="m-0 inline-flex flex-col items-center">
+        <input type="hidden" name="id" value="{{ all_products['enora'].selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit"
+        class="rounded-full bg-offwhite text-charcoal px-10 py-5 text-sm tracking-wide hover:bg-ember-soft transition-all hover:scale-[1.02] border-0 cursor-pointer"
+      >
+        {{ section.settings.cta_text }}
+      </button>
+      </form>
+      <span class="mt-4 text-xs tracking-[0.2em] uppercase text-offwhite/50">
+        {{ section.settings.installment_text }}
+      </span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA",
+  "tag": "section",
+  "class": "section-final-cta",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Commencez le rituel"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Offrez-vous<br><em class='not-italic text-ember-soft'>la lumière.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Livraison offerte. Paiement sécurisé. Service client 7j/7."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA text",
+      "default": "Commander ENORA · 89€"
+    },
+    {
+      "type": "text",
+      "id": "installment_text",
+      "label": "Installment text",
+      "default": "Ou 4× 22,25€ sans frais"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Final CTA",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}

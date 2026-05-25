@@ -1,0 +1,19 @@
+{
+  "name": "enora-shopify-theme",
+  "private": true,
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./assets/tailwind.css -o ./assets/theme.css --minify",
+    "build:js": "npx esbuild ./assets/theme.src.js --bundle --minify --outfile=./assets/theme.js",
+    "build": "npm run build:css && npm run build:js",
+    "watch:css": "npx tailwindcss -i ./assets/tailwind.css -o ./assets/theme.css --watch",
+    "watch:js": "npx esbuild ./assets/theme.src.js --bundle --outfile=./assets/theme.js --watch",
+    "watch": "npx concurrently \"npm:watch:css\" \"npm:watch:js\"",
+    "dev": "npx concurrently \"npm:watch\" \"shopify theme dev\""
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "esbuild": "^0.24.0",
+    "concurrently": "^9.0.0",
+    "autoprefixer": "^10.4.0"
+  }
+}

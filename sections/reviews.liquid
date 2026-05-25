@@ -1,0 +1,70 @@
+<section id="avis" class="py-28 lg:py-40" style="background:oklch(0.93 0.02 76);" data-section-type="reviews" data-section-id="{{ section.id }}">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 lg:mb-24 gap-6">
+      <div>
+        <p class="reveal text-[11px] tracking-[0.4em] uppercase text-taupe mb-6">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+        <h2 class="reveal reveal-delay-1 text-4xl lg:text-6xl text-balance">
+          {{ section.settings.headline }}
+        </h2>
+      </div>
+      <div class="reveal reveal-delay-2 flex gap-1 text-ember text-xl">
+        ★★★★★
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {% assign reviews = section.settings.reviews | split: '||' %}
+      {% for review in reviews %}
+        {% assign parts = review | strip | split: '|' %}
+        <figure class="reveal reveal-delay-{{ forloop.index | minus: 1 }} rounded-3xl bg-card p-10 shadow-soft border border-border/60">
+          <div class="text-ember mb-6 text-sm tracking-widest">★★★★★</div>
+          <blockquote class="font-display text-xl lg:text-2xl leading-snug text-foreground mb-8">
+            &laquo; {% if parts[2] %}{{ parts[2] | strip }}{% endif %} &raquo;
+          </blockquote>
+          <figcaption class="text-sm">
+            <div class="text-foreground">{% if parts[0] %}{{ parts[0] | strip }}{% endif %}</div>
+            <div class="text-muted-foreground text-xs tracking-wider uppercase mt-1">
+              {% if parts[1] %}{{ parts[1] | strip }}{% endif %} &middot; Cliente vérifiée
+            </div>
+          </figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "tag": "section",
+  "class": "section-reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Ils en parlent"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<em class='not-italic text-taupe'>4,9 / 5</em> · sur 2 184 rituels."
+    },
+    {
+      "type": "textarea",
+      "id": "reviews",
+      "label": "Reviews (|| separated, name|city|quote)",
+      "default": "Camille L.|Paris|Un objet d'une beauté rare. Je l'utilise chaque matin, c'est devenu mon moment préféré.||Thomas R.|Lyon|Mon cuir chevelu ne me démange plus. Et franchement, l'objet est sublime sur la console.||Inès B.|Bordeaux|Après deux mois, mes cheveux sont visiblement plus denses. Je n'y croyais pas."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}

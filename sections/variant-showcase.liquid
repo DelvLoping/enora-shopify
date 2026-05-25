@@ -1,0 +1,161 @@
+{% comment %} ENORA — Variant Showcase Section {% endcomment %}
+{% assign enora_product = all_products['enora'] %}
+{% if enora_product and enora_product.variants.size > 1 %}
+<section class="py-32 lg:py-44 relative overflow-hidden" style="background:oklch(0.94 0.018 78);" data-section-type="variant-showcase" data-section-id="{{ section.id }}">
+
+  {% comment %} Subtle radial gradient curve at bottom center {% endcomment %}
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-[70%]" style="background:radial-gradient(ellipse 60% 55% at 50% 100%, oklch(0.90 0.022 76 / 0.5) 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 relative z-10">
+
+    <div class="text-center mb-28 lg:mb-36">
+      <p class="reveal text-[11px] tracking-[0.4em] uppercase text-taupe mb-8">
+        {{ section.settings.eyebrow | escape }}
+      </p>
+      <h2 class="reveal reveal-delay-1 text-4xl lg:text-6xl text-foreground text-balance" style="font-family:'Inter Tight','Inter',ui-sans-serif,system-ui,sans-serif;font-weight:300;letter-spacing:-0.02em;">
+        {{ section.settings.headline }}
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+
+      {% comment %} Left: Product Image {% endcomment %}
+      <div class="reveal reveal-delay-2 relative aspect-[4/5] rounded-3xl overflow-hidden shadow-soft bg-card lg:sticky lg:top-28">
+        <img
+          id="variant-image"
+          src="{{ enora_product.featured_image | image_url: width: 1400 }}"
+          alt="{{ enora_product.title }}"
+          class="w-full h-full object-cover transition-all duration-500"
+          loading="lazy"
+        >
+      </div>
+
+      {% comment %} Right: Variant Cards — vertically centered via self-center {% endcomment %}
+      <div class="reveal reveal-delay-3 flex flex-col gap-5 lg:self-center">
+
+        {% for variant in enora_product.variants %}
+          <div
+            class="variant-card group rounded-2xl p-6 lg:p-8 cursor-pointer transition-all duration-300 border"
+            style="{% if forloop.first %}border-color:oklch(0.62 0.028 55 / 0.20);background:oklch(0.90 0.025 78 / 0.55);{% else %}border-color:oklch(0.88 0.018 70 / 0.4);background:var(--color-card);{% endif %}"
+            data-variant-id="{{ variant.id }}"
+            data-variant-image="{% if variant.featured_image %}{{ variant.featured_image | image_url: width: 1400 }}{% else %}{{ enora_product.featured_image | image_url: width: 1400 }}{% endif %}"
+            data-variant-price="{{ variant.price | money }}"
+          >
+
+            <div class="flex flex-col gap-3">
+
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <span class="w-3.5 h-3.5 rounded-full shrink-0 border border-border/20"
+                    style="background:{% if forloop.first %}linear-gradient(135deg,#383735 50%,#c25c20 50%){% else %}linear-gradient(135deg,#383735 50%,#6b3fa0 50%){% endif %};">
+                  </span>
+                  <h3 class="font-display text-lg lg:text-xl text-foreground truncate">
+                    {{ variant.title }}
+                  </h3>
+                  {% if forloop.first %}
+                    <span class="text-[9px] tracking-[0.2em] uppercase text-ember/60 font-medium shrink-0 ml-1">Populaire</span>
+                  {% endif %}
+                </div>
+                <span class="font-display text-lg lg:text-xl text-foreground/80 whitespace-nowrap shrink-0">
+                  {{ variant.price | money }}
+                </span>
+              </div>
+
+              <p class="text-[13px] text-muted-foreground leading-relaxed">
+                {% if forloop.first %}
+                  L&rsquo;original. Rouge embl&eacute;matique ENORA, pour celles et ceux qui assument leur rituel avec caract&egrave;re.
+                {% else %}
+                  L&rsquo;audacieux. Un violet profond et myst&eacute;rieux, pour un rituel qui ne ressemble qu&rsquo;&agrave; vous.
+                {% endif %}
+              </p>
+
+              <div class="flex justify-end">
+                <form method="post" action="/cart/add" class="m-0 w-full sm:w-auto">
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  <button type="submit"
+                    class="w-full sm:w-auto rounded-full border text-[12px] tracking-wide transition-all cursor-pointer px-7 py-2.5 bg-white/70 border-foreground/12 text-foreground/70 hover:bg-white hover:text-foreground hover:border-foreground/25">
+                    Ajouter au panier &rarr;
+                  </button>
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+        {% endfor %}
+
+        {% if request.page_type == 'index' %}
+        <a href="/products/enora" class="inline-block text-[13px] text-muted-foreground/60 hover:text-foreground hover:underline transition-colors no-underline mt-2 self-end">
+          Voir tous les d&eacute;tails &rarr;
+        </a>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% comment %} Variant image switcher JS {% endcomment %}
+<script>
+(function(){
+  var cards = document.querySelectorAll('.variant-card');
+  var img = document.getElementById('variant-image');
+  if (!cards.length || !img) return;
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(e){
+      if (e.target.closest('button') || e.target.closest('form')) return;
+
+      var newImg = card.dataset.variantImage;
+      if (newImg) {
+        img.style.opacity = '0';
+        setTimeout(function(){
+          img.src = newImg;
+          img.style.opacity = '1';
+        }, 200);
+      }
+
+      cards.forEach(function(c){
+        c.style.borderColor = 'oklch(0.88 0.018 70 / 0.4)';
+        c.style.background = 'var(--color-card)';
+      });
+
+      card.style.borderColor = 'oklch(0.62 0.028 55 / 0.20)';
+      card.style.background = 'oklch(0.90 0.025 78 / 0.55)';
+    });
+  });
+})();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Variant Showcase",
+  "tag": "section",
+  "class": "section-variant-showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Les couleurs"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Choisissez <em class='not-italic text-taupe'>votre signature.</em>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Variant Showcase",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}

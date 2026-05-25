@@ -1,0 +1,114 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "ENORA",
+    "theme_version": "1.0.0",
+    "theme_author": "ENORA",
+    "theme_documentation_url": "https://enora-rituel.fr",
+    "theme_support_email": "contact@enora-rituel.fr"
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Palette de marque"
+      },
+      {
+        "type": "color",
+        "id": "color_cream",
+        "label": "Fond principal (cream)",
+        "default": "#f8f6f0"
+      },
+      {
+        "type": "color",
+        "id": "color_charcoal",
+        "label": "Texte (charcoal)",
+        "default": "#383735"
+      },
+      {
+        "type": "color",
+        "id": "color_taupe",
+        "label": "Accent (taupe)",
+        "default": "#9e8e7e"
+      },
+      {
+        "type": "color",
+        "id": "color_ember",
+        "label": "Ember (rouge chaud)",
+        "default": "#c25c20"
+      }
+    ]
+  },
+  {
+    "name": "Typographie",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Polices"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_display",
+        "label": "Police titres (display)",
+        "default": "fraunces_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_sans",
+        "label": "Police corps (sans)",
+        "default": "inter_n4"
+      }
+    ]
+  },
+  {
+    "name": "Réseaux sociaux",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok"
+      }
+    ]
+  },
+  {
+    "name": "Produit",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Produit ENORA"
+      },
+      {
+        "type": "product",
+        "id": "product_enora",
+        "label": "Produit ENORA"
+      },
+      {
+        "type": "text",
+        "id": "installment_count",
+        "label": "Nombre de mensualités",
+        "default": "4"
+      }
+    ]
+  },
+  {
+    "name": "Paiement",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Options de paiement"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_installments",
+        "label": "Afficher le paiement en plusieurs fois",
+        "default": true
+      }
+    ]
+  }
+]

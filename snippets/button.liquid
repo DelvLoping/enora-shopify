@@ -1,0 +1,32 @@
+{% comment %}
+  Usage: {% render 'button', text: 'Commander', url: '#', variant: 'primary', icon: 'arrow' %}
+  variant: primary | secondary | outline
+  type: link | button
+{% endcomment %}
+
+{% assign btn_variant = variant | default: 'primary' %}
+{% assign btn_type = type | default: 'link' %}
+
+{% if btn_variant == 'primary' %}
+  {% assign btn_class = 'rounded-full bg-foreground text-background px-8 py-4 text-sm tracking-wide hover:bg-foreground/90 transition-all hover:scale-[1.02] no-underline inline-block text-center' %}
+{% elsif btn_variant == 'secondary' %}
+  {% assign btn_class = 'rounded-full bg-offwhite text-charcoal px-8 py-4 text-sm tracking-wide hover:bg-ember-soft transition-all hover:scale-[1.02] no-underline inline-block text-center border border-border' %}
+{% else %}
+  {% assign btn_class = 'rounded-full border border-border text-foreground px-8 py-4 text-sm tracking-wide hover:bg-foreground/5 transition-all no-underline inline-block text-center' %}
+{% endif %}
+
+{% if btn_type == 'button' %}
+  <button
+    data-add-to-cart
+    data-variant-id="{{ all_products['enora'].selected_or_first_available_variant.id }}"
+    class="{{ btn_class }} border-0 cursor-pointer"
+  >
+    {{ text }}
+    {% if icon == 'arrow' %}&rarr;{% endif %}
+  </button>
+{% else %}
+  <a href="{{ url | default: '#' }}" class="{{ btn_class }}">
+    {{ text }}
+    {% if icon == 'arrow' %}&rarr;{% endif %}
+  </a>
+{% endif %}

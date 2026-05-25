@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Retours et remboursements",
+        "content": "<p><strong>Droit de rétractation</strong></p><p>Conformément a la loi, vous disposez de 14 jours après réception pour exercer votre droit de rétractation.</p><p><strong>Conditions</strong></p><p>Le produit doit être retourné dans son emballage d'origine, non utilisé, en parfait état. Les frais de retour sont a la charge du client.</p><p><strong>Remboursement</strong></p><p>Le remboursement est effectué sous 14 jours après réception et vérification du produit retourné, via le même moyen de paiement.</p><p><strong>Produit défectueux</strong></p><p>Si votre produit présente un défaut, contactez-nous a contact@enora-rituel.fr avec une photo. Nous procéderons a un échange ou un remboursement.</p><p><strong>Adresse de retour</strong></p><p>FlowCodeLab<br>200 RUE de la Croix Nivert<br>75015 Paris<br>FRANCE</p>"
+      }
+    }
+  },
+  "order": ["rich-text"]
+}

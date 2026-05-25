@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": {} },
+    "marquee": { "type": "marquee", "settings": {} },
+    "lifestyle": { "type": "lifestyle", "settings": {} },
+    "product-showcase": { "type": "product-showcase", "settings": {} },
+    "ritual": { "type": "ritual", "settings": {} },
+    "variant-showcase": { "type": "variant-showcase", "settings": {} },
+    "how-it-works": { "type": "how-it-works", "settings": {} },
+    "benefits": { "type": "benefits", "settings": {} },
+    "faq": { "type": "faq", "settings": {} },
+    "reviews": { "type": "reviews", "settings": {} },
+    "final-cta": { "type": "final-cta", "settings": {} }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "lifestyle",
+    "product-showcase",
+    "ritual",
+    "variant-showcase",
+    "how-it-works",
+    "benefits",
+    "faq",
+    "reviews",
+    "final-cta"
+  ]
+}

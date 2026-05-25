@@ -1,0 +1,97 @@
+<header class="fixed top-0 z-40 w-full backdrop-blur-xl bg-background/70 border-b border-border/60 transition-colors duration-300" data-section-type="header" data-section-id="{{ section.id }}" data-header>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+
+    <a href="/" class="font-display text-xl tracking-[0.3em] text-foreground no-underline shrink-0">
+      {{ section.settings.logo_text }}
+    </a>
+
+    <nav class="hidden md:flex items-center gap-10 text-[13px] text-muted-foreground">
+      <a href="/#rituel" class="hover:text-foreground transition-colors no-underline">Le rituel</a>
+      <a href="/#bienfaits" class="hover:text-foreground transition-colors no-underline">Bienfaits</a>
+      <a href="/#produit" class="hover:text-foreground transition-colors no-underline">Produit</a>
+      <a href="/#avis" class="hover:text-foreground transition-colors no-underline">Avis</a>
+      <a href="/#faq" class="hover:text-foreground transition-colors no-underline">FAQ</a>
+      <a href="/blogs/news" class="hover:text-foreground transition-colors no-underline">Journal</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <form method="post" action="/cart/add" class="m-0 hidden sm:block">
+        <input type="hidden" name="id" value="{{ all_products['enora'].selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="rounded-full bg-foreground text-background text-[13px] px-5 py-2.5 hover:bg-foreground/90 transition-colors border-0 cursor-pointer">
+          Acheter · {{ all_products['enora'].price | money_with_currency | remove: ' EUR' | remove: 'EUR' }}{% if all_products['enora'].compare_at_price > all_products['enora'].price %} <span style="text-decoration:line-through;opacity:0.4;">{{ all_products['enora'].compare_at_price | money_with_currency | remove: ' EUR' | remove: 'EUR' }}</span>{% endif %}
+        </button>
+      </form>
+
+      <a href="/cart" class="relative p-2 text-foreground hover:text-taupe transition-colors no-underline" aria-label="Panier">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="absolute -top-[1px] -right-[1px] bg-ember text-offwhite text-[8px] w-[15px] h-[15px] rounded-full flex items-center justify-center font-semibold leading-none" style="line-height:0">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+
+      <button class="md:hidden text-foreground p-2 border-0 bg-transparent cursor-pointer" data-mobile-menu-toggle aria-label="Menu">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+          <line y1="1" x2="20" y2="1" stroke="currentColor" stroke-width="1.5"/>
+          <line y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="1.5"/>
+          <line y1="13" x2="20" y2="13" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="fixed inset-0 z-50 flex flex-col justify-center items-center gap-7 p-8 hidden" style="background:#f7f4ee;" data-mobile-menu>
+    <a href="/#rituel" class="text-xl font-light text-foreground/85 no-underline tracking-tight" data-mobile-link>Le rituel</a>
+    <a href="/#bienfaits" class="text-xl font-light text-foreground/85 no-underline tracking-tight" data-mobile-link>Bienfaits</a>
+    <a href="/#produit" class="text-xl font-light text-foreground/85 no-underline tracking-tight" data-mobile-link>Produit</a>
+    <a href="/#avis" class="text-xl font-light text-foreground/85 no-underline tracking-tight" data-mobile-link>Avis</a>
+    <a href="/#faq" class="text-xl font-light text-foreground/85 no-underline tracking-tight" data-mobile-link>FAQ</a>
+    <a href="/blogs/news" class="text-xl font-light text-foreground/85 no-underline tracking-tight" data-mobile-link>Journal</a>
+    <a href="/products/enora" class="mt-6 rounded-full bg-foreground text-background px-8 py-3.5 text-sm tracking-wide font-medium no-underline" data-mobile-link>Découvrir ENORA</a>
+    <button class="absolute top-4 right-4 text-foreground/40 hover:text-foreground p-4 border-0 bg-transparent cursor-pointer text-3xl leading-none" data-mobile-menu-close aria-label="Fermer">&times;</button>
+  </div>
+</header>
+
+<style>
+  .header-on-dark { background: rgba(56,55,53,0.85) !important; border-color: rgba(255,255,255,0.08) !important; }
+  .header-on-dark a:not([class*="bg-foreground"]),
+  .header-on-dark button:not([class*="bg-foreground"]) { color: rgba(248,246,240,0.9) !important; }
+  .header-on-dark a:not([class*="bg-foreground"]):hover { color: #fff !important; }
+</style>
+<script>
+(function(){
+  var header = document.querySelector('[data-header]');
+  if (!header) return;
+  var cta = document.getElementById('acheter');
+  if (!cta) return;
+  var obs = new IntersectionObserver(function(entries){
+    header.classList.toggle('header-on-dark', entries[0].isIntersecting);
+  }, {rootMargin: '-' + header.offsetHeight + 'px 0px 0px 0px'});
+  obs.observe(cta);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "ENORA"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image (optional)"
+    }
+  ]
+}
+{% endschema %}

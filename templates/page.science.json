@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "La science ENORA",
+        "content": "<p><strong>La lumière rouge au service de votre cuir chevelu</strong></p><p>ENORA utilisé la photobiomodulation, une technologie scientifiquement prouvee qui stimule la microcirculation du cuir chevelu grâce à une lumiere LED rouge de 660nm.</p><p><strong>132 diodes médicales</strong></p><p>Chaque appareil est équipé de 132 diodes de grade médical, positionnées avec précision pour une couverture optimale du cuir chevelu.</p><p><strong>4 minutes par jour</strong></p><p>Des études montrent qu une exposition régulière de 4 minutes suffit pour obtenir des résultats visibles. La lumière rouge pénètre en douceur les tissus pour favoriser la régénération cellulaire.</p><p><strong>Normes européennes</strong></p><p>ENORA respecte les normes européennes les plus strictes en matiere de securite. Sans UV, sans chaleur excessive.</p>"
+      }
+    }
+  },
+  "order": ["rich-text"]
+}

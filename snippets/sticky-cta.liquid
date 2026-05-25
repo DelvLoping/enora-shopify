@@ -1,0 +1,45 @@
+{% if request.page_type == 'index' %}
+{% assign enora_product = all_products['enora'] %}
+{% if enora_product %}
+<style>
+@media (max-width: 767px) {
+  #sticky-cta form { padding: 8px 14px !important; gap: 8px !important; }
+  #sticky-cta form span { font-size: 12px !important; }
+  #sticky-cta form button { padding: 6px 12px !important; font-size: 12px !important; }
+}
+</style>
+<div id="sticky-cta" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:30;opacity:0;pointer-events:none;transition:opacity 0.5s,transform 0.5s;">
+  <form method="post" action="/cart/add" style="display:flex;align-items:center;gap:16px;background:#383735;color:#f8f6f0;padding:12px 24px;border-radius:9999px;box-shadow:0 8px 30px rgba(0,0,0,0.15);margin:0;">
+    <input type="hidden" name="id" value="{{ enora_product.selected_or_first_available_variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+    <span style="font-size:14px;font-weight:500;white-space:nowrap;">ENORA · {{ enora_product.price | money }}{% if enora_product.compare_at_price > enora_product.price %} <span style="text-decoration:line-through;opacity:0.45;font-size:12px;">{{ enora_product.compare_at_price | money }}</span>{% endif %}</span>
+    <button type="submit" style="background:#c25c20;color:#faf8f2;border:none;padding:10px 20px;border-radius:9999px;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;">Commander</button>
+  </form>
+</div>
+
+<script>
+(function(){
+  var el = document.getElementById('sticky-cta');
+  if (!el) return;
+  var ticking = false;
+  function update(){
+    if (window.scrollY > 600) {
+      el.style.opacity = '1';
+      el.style.transform = 'translateX(-50%) translateY(0)';
+      el.style.pointerEvents = 'auto';
+    } else {
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(-50%) translateY(24px)';
+      el.style.pointerEvents = 'none';
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  });
+  // show immediately if already scrolled
+  update();
+})();
+</script>
+{% endif %}
+{% endif %}

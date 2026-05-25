@@ -1,0 +1,83 @@
+<div class="pt-32 pb-12 lg:pt-40 lg:pb-16 bg-warm-gradient" data-section-type="main-product" data-section-id="{{ section.id }}">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden bg-card shadow-soft">
+        {% assign current_variant = product.selected_or_first_available_variant %}
+        {% if current_variant.featured_image %}
+          {{ current_variant.featured_image | image_url: width: 1000 | image_tag:
+            loading: 'eager',
+            class: 'w-full h-full object-cover',
+            alt: product.title
+          }}
+        {% elsif product.featured_image %}
+          {{ product.featured_image | image_url: width: 1000 | image_tag:
+            loading: 'eager',
+            class: 'w-full h-full object-cover',
+            alt: product.title
+          }}
+        {% endif %}
+      </div>
+
+      <div>
+        <p class="text-[11px] tracking-[0.4em] uppercase text-taupe mb-6">
+          {{ product.type | default: 'Scalp Wellness' }}
+        </p>
+        <h1 class="font-display text-4xl lg:text-6xl text-balance text-foreground mb-6">
+          {{ product.title }}
+        </h1>
+
+        <div class="flex items-baseline gap-4 mb-8">
+          <span class="font-display text-4xl text-foreground">
+            {{ product.price | money_with_currency }}
+          </span>
+          {% if product.compare_at_price > product.price %}
+            <span class="text-xl text-muted-foreground line-through">
+              {{ product.compare_at_price | money_with_currency }}
+            </span>
+          {% endif %}
+        </div>
+
+        <p class="text-muted-foreground leading-relaxed mb-8">
+          {{ product.description | strip_html }}
+        </p>
+
+        <div class="flex items-center gap-3 text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-8">
+          <span>&#10003; Livraison offerte</span>
+          <span class="h-1 w-1 rounded-full bg-border"></span>
+          <span>&#10003; Paiement 4x sans frais</span>
+          <span class="h-1 w-1 rounded-full bg-border"></span>
+          <span>&#10003; Service client 7j/7</span>
+        </div>
+
+        <form method="post" action="/cart/add" class="m-0">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" class="w-full sm:w-auto rounded-full bg-foreground text-background px-10 py-5 text-sm tracking-wide hover:bg-foreground/90 transition-all hover:scale-[1.02] border-0 cursor-pointer">
+            Ajouter au panier · {{ product.price | money_with_currency }}
+          </button>
+        </form>
+
+        <p class="mt-4 text-xs tracking-[0.2em] uppercase text-muted-foreground">
+          Ou 4&times; {{ product.price | divided_by: 4 | money }} sans frais
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main Product",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}

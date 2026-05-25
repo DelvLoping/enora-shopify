@@ -1,0 +1,76 @@
+<section class="py-28 lg:py-40" style="background:oklch(0.93 0.02 76);" data-section-type="lifestyle" data-section-id="{{ section.id }}">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-6">
+
+    <div class="reveal relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft">
+      {% if section.settings.image_left %}
+        {{ section.settings.image_left | image_url: width: 1000 | image_tag:
+          loading: 'lazy',
+          class: 'w-full h-full object-cover',
+          alt: 'Rituel ENORA'
+        }}
+      {% else %}
+        <img src="{{ 'ritual.jpg' | asset_url }}" alt="Rituel ENORA" class="w-full h-full object-cover" loading="lazy" width="1000" height="1250" />
+      {% endif %}
+    </div>
+
+    <div class="reveal reveal-delay-1 relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft">
+      {% if section.settings.image_right %}
+        {{ section.settings.image_right | image_url: width: 1000 | image_tag:
+          loading: 'lazy',
+          class: 'w-full h-full object-cover',
+          alt: 'Univers ENORA'
+        }}
+      {% else %}
+        <img src="{{ 'lifestyle.jpg' | asset_url }}" alt="Univers ENORA" class="w-full h-full object-cover" loading="lazy" width="1000" height="1250" />
+      {% endif %}
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+      <div class="absolute bottom-0 left-0 p-10 lg:p-12 text-offwhite" style="text-shadow:0 0 10px rgba(0,0,0,0.8);">
+        <p class="text-[11px] tracking-[0.4em] uppercase text-ember-soft mb-4">
+          {{ section.settings.overlay_eyebrow | escape }}
+        </p>
+        <h3 class="font-display text-3xl lg:text-4xl text-balance">
+          {{ section.settings.overlay_headline }}
+        </h3>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lifestyle Images",
+  "tag": "section",
+  "class": "section-lifestyle",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right image"
+    },
+    {
+      "type": "text",
+      "id": "overlay_eyebrow",
+      "label": "Overlay eyebrow",
+      "default": "Une parenthèse"
+    },
+    {
+      "type": "textarea",
+      "id": "overlay_headline",
+      "label": "Overlay headline",
+      "default": "Le luxe, aujourd'hui, c'est le silence qu'on s'offre."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lifestyle Images",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}

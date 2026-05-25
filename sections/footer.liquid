@@ -1,0 +1,68 @@
+<footer class="border-t border-border py-16" data-section-type="footer" data-section-id="{{ section.id }}">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 grid md:grid-cols-4 gap-10">
+    <div class="md:col-span-2">
+      <div class="font-display text-2xl tracking-[0.3em]">{{ section.settings.brand_name }}</div>
+      <p class="mt-4 text-sm text-muted-foreground max-w-sm">
+        {{ section.settings.tagline | escape }}
+      </p>
+    </div>
+
+    <div>
+      <div class="text-[11px] tracking-[0.3em] uppercase text-taupe mb-4">Maison</div>
+      <ul class="space-y-2 text-sm text-muted-foreground list-none p-0">
+        <li><a href="/pages/notre-histoire" class="hover:text-foreground transition-colors no-underline">Notre histoire</a></li>
+        <li><a href="/pages/science" class="hover:text-foreground transition-colors no-underline">Science</a></li>
+        <li><a href="/pages/presse" class="hover:text-foreground transition-colors no-underline">Presse</a></li>
+        <li><a href="/blogs/news" class="hover:text-foreground transition-colors no-underline">Journal</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="text-[11px] tracking-[0.3em] uppercase text-taupe mb-4">Aide</div>
+      <ul class="space-y-2 text-sm text-muted-foreground list-none p-0">
+        <li><a href="/pages/livraison" class="hover:text-foreground transition-colors no-underline">Livraison</a></li>
+        <li><a href="/pages/retours" class="hover:text-foreground transition-colors no-underline">Retours</a></li>
+        <li><a href="/pages/contact" class="hover:text-foreground transition-colors no-underline">Contact</a></li>
+      </ul>
+
+      <div class="text-[11px] tracking-[0.3em] uppercase text-taupe mt-6 mb-4">Legal</div>
+      <ul class="space-y-2 text-sm text-muted-foreground list-none p-0">
+        <li><a href="/pages/conditions-generales" class="hover:text-foreground transition-colors no-underline">CGV</a></li>
+        <li><a href="/pages/politique-confidentialite" class="hover:text-foreground transition-colors no-underline">Confidentialit&eacute;</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 mt-12 pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between text-xs text-muted-foreground gap-2">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.brand_name }}. Tous droits réservés.</span>
+    <span>{{ section.settings.bottom_tagline }}</span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "class": "section-footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "ENORA"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Le rituel scalp-care premium à lumière rouge. Respecte les normes européennes."
+    },
+    {
+      "type": "text",
+      "id": "bottom_tagline",
+      "label": "Bottom tagline",
+      "default": "Respecte les normes europ&eacute;ennes &middot; Pens&eacute; pour durer"
+    }
+  ]
+}
+{% endschema %}

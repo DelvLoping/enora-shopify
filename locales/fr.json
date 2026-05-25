@@ -1,0 +1,31 @@
+{
+  "general": {
+    "brand_name": "ENORA",
+    "tagline": "Le rituel scalp-care premium à lumière rouge. Conçu en France."
+  },
+  "product": {
+    "add_to_cart": "Ajouter au panier",
+    "sold_out": "Épuisé",
+    "price": "Prix",
+    "compare_at": "Prix barré"
+  },
+  "cart": {
+    "title": "Votre panier",
+    "empty": "Votre panier est vide.",
+    "subtotal": "Sous-total",
+    "checkout": "Commander",
+    "free_shipping": "Livraison offerte en France métropolitaine",
+    "remove": "Supprimer"
+  },
+  "checkout": {
+    "secure": "Paiement 100% sécurisé"
+  },
+  "home": {
+    "title": "ENORA — Rituel capillaire à lumière rouge"
+  },
+  "404": {
+    "title": "Page introuvable",
+    "message": "Cette page n'existe pas.",
+    "back": "Retour à l'accueil"
+  }
+}

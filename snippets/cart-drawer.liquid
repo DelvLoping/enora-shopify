@@ -1,0 +1,27 @@
+<div class="cart-overlay fixed inset-0 z-50 bg-charcoal/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-400" data-cart-overlay></div>
+
+<div class="cart-drawer fixed top-0 right-0 z-50 h-full w-full sm:w-[420px] bg-card shadow-2xl translate-x-full transition-transform duration-500 ease-out" data-cart-drawer>
+  <div class="flex flex-col h-full">
+    <div class="flex items-center justify-between p-6 border-b border-border">
+      <h2 class="font-display text-xl text-foreground m-0">Votre panier</h2>
+      <button class="text-foreground/60 hover:text-foreground transition-colors border-0 bg-transparent cursor-pointer text-xl p-2" data-cart-close aria-label="Fermer le panier">
+        &times;
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-6" data-cart-items>
+      <p class="text-muted-foreground text-sm text-center py-12">Votre panier est vide.</p>
+    </div>
+
+    <div class="border-t border-border p-6" data-cart-footer style="display:none;">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm text-muted-foreground">Sous-total</span>
+        <span class="font-display text-xl text-foreground" data-cart-subtotal></span>
+      </div>
+      <p class="text-[11px] text-muted-foreground text-center mb-4">Livraison offerte</p>
+      <a href="/checkout" class="block text-center rounded-full bg-foreground text-background px-8 py-4 text-sm tracking-wide hover:bg-foreground/90 transition-all no-underline" data-cart-checkout>
+        Commander
+      </a>
+    </div>
+  </div>
+</div>

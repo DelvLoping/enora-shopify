@@ -1,0 +1,32 @@
+<section class="border-y border-border/60 py-8 overflow-hidden bg-background" data-section-type="marquee" data-section-id="{{ section.id }}">
+  <div class="flex marquee gap-16 whitespace-nowrap">
+    {% assign items = section.settings.brands | split: ',' %}
+    {% for i in (1..3) %}
+      {% for item in items %}
+        <span class="font-display text-2xl text-taupe/60 tracking-wider">{{ item | strip }}</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "class": "section-marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brands",
+      "label": "Brand names (comma separated)",
+      "default": "Vogue, Marie Claire, L'Officiel, Numéro, Madame Figaro, GQ France, Elle"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}

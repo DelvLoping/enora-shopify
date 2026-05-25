@@ -1,0 +1,127 @@
+{% comment %} ENORA Article — Content + Sticky Product Ad {% endcomment %}
+{% assign enora_product = all_products['enora'] %}
+<div class="pt-32 pb-24 min-h-screen bg-background">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
+
+    {% comment %} Article Header {% endcomment %}
+    <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
+      <p class="text-[11px] tracking-[0.4em] uppercase text-taupe mb-5">{{ article.published_at | date: '%d %B %Y' }}</p>
+      <h1 class="font-display text-3xl lg:text-5xl text-foreground text-balance mb-6">{{ article.title }}</h1>
+      {% if article.excerpt.size > 0 %}
+      <p class="text-muted-foreground text-lg leading-relaxed">{{ article.excerpt | strip_html }}</p>
+      {% endif %}
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+
+      {% comment %} Article Content {% endcomment %}
+      <div class="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
+        {% if article.image %}
+        <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-sand/20 mb-10">
+          {{ article.image | image_url: width: 1200 | image_tag: loading: 'eager', class: 'w-full h-full object-cover', alt: article.title | escape }}
+        </div>
+        {% endif %}
+
+        <div class="prose-custom text-foreground/85 leading-relaxed text-[15px] space-y-5">
+          {{ article.content }}
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-border/40 text-center">
+          <a href="{{ blog.url }}" class="text-sm text-muted-foreground hover:text-foreground transition-colors no-underline">&larr; Retour au Journal</a>
+        </div>
+      </div>
+
+      {% comment %} Sticky Product Ad — desktop only {% endcomment %}
+      {% if enora_product %}
+      <div class="hidden lg:block w-[280px] shrink-0">
+        <div class="sticky top-28 rounded-2xl bg-card border border-border/60 p-6 text-center">
+          <div class="aspect-[4/5] rounded-xl overflow-hidden bg-sand/20 mb-5">
+            {% if enora_product.featured_image %}
+            {{ enora_product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'w-full h-full object-cover', alt: enora_product.title | escape }}
+            {% endif %}
+          </div>
+          <h3 class="font-display text-lg text-foreground mb-1">{{ enora_product.title }}</h3>
+          <p class="text-xs text-muted-foreground mb-4">Le rituel lumi&egrave;re rouge pour votre cuir chevelu</p>
+          <div class="flex items-baseline justify-center gap-2 mb-4">
+            <span class="font-medium text-foreground">{{ enora_product.price | money }}</span>
+            {% if enora_product.compare_at_price > enora_product.price %}
+            <span class="text-xs text-muted-foreground/50 line-through">{{ enora_product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+          <form method="post" action="/cart/add" class="m-0">
+            <input type="hidden" name="id" value="{{ enora_product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="w-full rounded-full bg-foreground text-background py-3 text-sm font-medium hover:bg-foreground/90 transition-all border-0 cursor-pointer">
+              D&eacute;couvrir &rarr;
+            </button>
+          </form>
+          <p class="text-[10px] text-muted-foreground/50 mt-3">Livraison offerte &middot; 4&times; sans frais</p>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .prose-custom h2 {
+    font-family: 'Fraunces','Cormorant Garamond',ui-serif,Georgia,serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: oklch(0.22 0.008 60);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .prose-custom h3 {
+    font-family: 'Fraunces','Cormorant Garamond',ui-serif,Georgia,serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: oklch(0.22 0.008 60);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-custom p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+  .prose-custom ul, .prose-custom ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .prose-custom li {
+    margin-bottom: 0.5rem;
+  }
+  .prose-custom strong {
+    color: oklch(0.22 0.008 60);
+    font-weight: 600;
+  }
+  .prose-custom a {
+    color: oklch(0.62 0.18 25);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-custom a:hover {
+    color: oklch(0.78 0.10 28);
+  }
+  .prose-custom blockquote {
+    border-left: 2px solid oklch(0.62 0.028 55 / 0.3);
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: oklch(0.45 0.018 60);
+    margin: 1.5rem 0;
+  }
+  .prose-custom em {
+    font-style: italic;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Main Article",
+  "tag": "section",
+  "class": "section-main-article",
+  "settings": []
+}
+{% endschema %}

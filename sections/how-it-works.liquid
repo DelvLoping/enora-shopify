@@ -1,0 +1,64 @@
+<section class="py-28 lg:py-40" data-section-type="how-it-works" data-section-id="{{ section.id }}">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-20">
+      <p class="reveal text-[11px] tracking-[0.4em] uppercase text-taupe mb-6">
+        {{ section.settings.eyebrow | escape }}
+      </p>
+      <h2 class="reveal reveal-delay-1 text-4xl lg:text-6xl text-balance">
+        {{ section.settings.headline }}
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-16">
+      {% assign steps = section.settings.steps | split: '||' %}
+      {% for step in steps %}
+        {% assign parts = step | strip | split: '|' %}
+        <div class="reveal reveal-delay-{{ forloop.index | minus: 1 }} text-center">
+          <div class="font-display text-7xl lg:text-8xl text-ember/30 mb-6">
+            {% if parts[0] %}{{ parts[0] | strip }}{% endif %}
+          </div>
+          <h3 class="text-2xl lg:text-3xl mb-3">
+            {% if parts[1] %}{{ parts[1] | strip }}{% endif %}
+          </h3>
+          <p class="text-muted-foreground">
+            {% if parts[2] %}{{ parts[2] | strip }}{% endif %}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "class": "section-how-it-works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Mode d'emploi"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Trois gestes, <em class='not-italic text-taupe'>rien de plus.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "steps",
+      "label": "Steps (|| separated, number|title|description)",
+      "default": "01|Posez|Sur le cuir chevelu, sans pression.||02|Allumez|Une pression. La lumière rouge s'éveille.||03|Respirez|Quatre minutes. Trois zones. Un rituel."
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "category": "ENORA Sections"
+    }
+  ]
+}
+{% endschema %}
