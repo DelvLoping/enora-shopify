@@ -37,6 +37,31 @@
 
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 
+  {% if request.page_type == 'index' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "ENORA",
+    "description": "Brosse LED cheveux à lumière rouge 660 nm. Rituel de 4 minutes par jour pour prendre soin du cuir chevelu. 132 diodes, recharge USB-C.",
+    "image": "{{ 'hero-product.jpg' | asset_url }}",
+    "brand": { "@type": "Brand", "name": "ENORA" },
+    "offers": {
+      "@type": "Offer",
+      "price": "89.90",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": "{{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' }}"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "47"
+    }
+  }
+  </script>
+  {% endif %}
+
   {{ content_for_header }}
 </head>
 <body class="bg-background text-foreground antialiased overflow-x-hidden">
